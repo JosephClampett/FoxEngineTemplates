@@ -1,0 +1,69 @@
+//------------------------------------------------
+//--- 010 Editor v12.0 Binary Template
+//
+//      File: FCLO
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+typedef struct
+{
+	float x;
+	float y;
+	float z;
+} Float3 <read=Str("(%g, %g, %g)", x, y, z)>;
+
+typedef struct
+{
+	float x;
+	float y;
+	float z;
+	float w;
+} Quaternion <read=Str("(%g, %g, %g, %g)", x, y, z, w)>;
+
+struct Header
+{
+    uint signature;
+    FSkip(12);
+
+    uint section0Count;
+    uint section1Count;
+    uint section3Count;
+    uint section4Count;
+    uint section5Count;
+} header;
+
+struct Section01
+{
+    Float3 vector;
+    uint boneNameHash;
+} Section01Entries[header.section0Count + header.section1Count] <bgcolor=cRed>;
+
+struct Section2
+{
+    uint section5Index0;
+    uint section5Index1;
+    uint section5Index2;
+    uint section5Index3;
+    Quaternion rotation;
+} Section2Entries[header.section0Count + header.section1Count] <bgcolor=cBlue>;
+
+struct Section3
+{
+    uint unknown[2];
+} Section3Entries[header.section3Count] <bgcolor=cGreen>;
+
+struct Section4
+{
+    uint unknown[4];
+} Section4Entries[header.section4Count] <bgcolor=cYellow>;
+
+struct Section5
+{
+    uint unknown[1];
+} Section5Entries[header.section5Count] <bgcolor=cPurple>;
