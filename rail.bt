@@ -74,7 +74,7 @@ else
 		struct Segment
 		{
 			Float3 Position; float ArcLength; // Length of Hermite
-			Float3 Tangent; float TangentLength; // TangentLength == length(Tangent) == sqrt(Tangent.x^2 + Tangent.y^2 + Tangent.z^2)
+			Float3 Tangent; float TangentMagnitude; // TangentMagnitude == length(Tangent) == sqrt(Tangent.x^2 + Tangent.y^2 + Tangent.z^2)
 		} Segments[NodeCount] <bgcolor=0x8ADEF3, optimize=false>; 
 		
 		FSeek(Section2Offset);
